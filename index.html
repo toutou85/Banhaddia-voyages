@@ -7,6 +7,12 @@
 
 <style>
 *{box-sizing:border-box}
+
+:root{
+  --gold:#d4af37;
+  --red:#8b0000;
+}
+
 body{
   margin:0;
   font-family:Tajawal,Arial,sans-serif;
@@ -25,7 +31,7 @@ body::before{
 /* HEADER */
 header{text-align:center;padding:20px}
 header img{max-width:240px}
-header h1{color:#2ecc71;font-size:22px;margin:8px 0}
+header h1{color:var(--gold);font-size:22px;margin:8px 0}
 header p{opacity:.9}
 
 /* MENU */
@@ -36,7 +42,7 @@ header p{opacity:.9}
   font-size:28px;
   cursor:pointer;
   z-index:1100;
-  color:#2ecc71
+  color:var(--gold)
 }
 .sidebar{
   position:fixed;
@@ -44,19 +50,19 @@ header p{opacity:.9}
   right:-260px;
   width:260px;
   height:100%;
-  background:#0f2f1f;
+  background:#2b0000;
   padding:20px;
   transition:.3s;
   z-index:1000
 }
 .sidebar.active{right:0}
-.sidebar h3{color:#2ecc71}
+.sidebar h3{color:var(--gold)}
 .sidebar a{
   display:block;
   padding:12px 0;
   color:#fff;
   text-decoration:none;
-  border-bottom:1px solid rgba(255,255,255,.1)
+  border-bottom:1px solid rgba(255,255,255,.15)
 }
 .overlay{
   display:none;
@@ -77,11 +83,11 @@ header p{opacity:.9}
   gap:15px
 }
 .card{
-  background:rgba(15,40,30,.95);
+  background:rgba(40,0,0,.95);
   padding:18px;
   border-radius:14px
 }
-.card h3{color:#2ecc71;font-size:16px}
+.card h3{color:var(--gold);font-size:16px}
 .card p{font-size:14px;line-height:1.8}
 .btn-main{
   margin-top:10px;
@@ -89,7 +95,7 @@ header p{opacity:.9}
   padding:12px;
   border:none;
   border-radius:10px;
-  background:#27ae60;
+  background:var(--red);
   color:#fff;
   font-weight:bold;
   cursor:pointer
@@ -97,7 +103,7 @@ header p{opacity:.9}
 
 /* FORM */
 form{
-  background:rgba(15,40,30,.95);
+  background:rgba(40,0,0,.95);
   padding:20px;
   border-radius:16px;
   margin-top:25px
@@ -113,7 +119,7 @@ textarea{resize:none}
 button.submit{
   width:100%;
   padding:14px;
-  background:#2ecc71;
+  background:var(--gold);
   border:none;
   border-radius:12px;
   font-size:18px;
@@ -126,7 +132,7 @@ button.submit{
 .success{background:#1e8449}
 .note{
   margin-top:10px;
-  background:#1b3a2a;
+  background:#3a0000;
   padding:10px;
   border-radius:10px;
   font-size:14px
@@ -138,7 +144,7 @@ footer{text-align:center;padding:15px;font-size:13px;opacity:.8}
 
 <body>
 
-<div class="menu-btn" onclick="openMenu()">☰</div>
+<div class="menu-btn" id="menuBtn" onclick="openMenu()">☰</div>
 
 <div class="sidebar" id="sidebar">
   <h3>القائمة</h3>
@@ -157,38 +163,62 @@ footer{text-align:center;padding:15px;font-size:13px;opacity:.8}
 
 <section class="section">
 
-<h2 style="text-align:center;color:#2ecc71">📌 عروض العمرة</h2>
+<h2 style="text-align:center;color:var(--gold)">📌 عروض العمرة</h2>
 
 <div class="offers">
 
   <div class="card">
     <h3>أسبوع شعبان / رمضان</h3>
-    <p>ابتداءً من 259.000 دج</p>
-    <button class="btn-main" onclick="selectOffer('أسبوع شعبان / رمضان','من 259.000 دج','فنادق قريبة من الحرم')">سجل الآن</button>
+    <p>
+      💰 السعر: <b>259.000 دج</b><br>
+      🏨 الفندق: <b>رحاب الحضائر (850م)</b>
+    </p>
+    <button class="btn-main"
+      onclick="selectOffer('أسبوع شعبان / رمضان','259.000 دج','رحاب الحضائر (850م)')">
+      سجل الآن
+    </button>
   </div>
 
   <div class="card">
     <h3>15 الأوائل من رمضان</h3>
-    <p>ابتداءً من 299.000 دج</p>
-    <button class="btn-main" onclick="selectOffer('15 الأوائل من رمضان','من 299.000 دج','فنادق معتمدة')">سجل الآن</button>
+    <p>
+      💰 السعر: <b>299.000 دج</b><br>
+      🏨 الفندق: <b>أعمار الحيوان (700م)</b>
+    </p>
+    <button class="btn-main"
+      onclick="selectOffer('15 الأوائل من رمضان','299.000 دج','أعمار الحيوان (700م)')">
+      سجل الآن
+    </button>
   </div>
 
   <div class="card">
     <h3>15 الأخيرة من رمضان</h3>
-    <p>ابتداءً من 430.000 دج</p>
-    <button class="btn-main" onclick="selectOffer('15 الأخيرة من رمضان','من 430.000 دج','فنادق قريبة')">سجل الآن</button>
+    <p>
+      💰 السعر: <b>430.000 دج</b><br>
+      🏨 الفندق: <b>الرسالة (550م)</b>
+    </p>
+    <button class="btn-main"
+      onclick="selectOffer('15 الأخيرة من رمضان','430.000 دج','الرسالة (550م)')">
+      سجل الآن
+    </button>
   </div>
 
   <div class="card">
     <h3>شهر رمضان كامل</h3>
-    <p>ابتداءً من 455.000 دج</p>
-    <button class="btn-main" onclick="selectOffer('شهر رمضان كامل','من 455.000 دج','حسب الاختيار')">سجل الآن</button>
+    <p>
+      💰 السعر: <b>455.000 دج</b><br>
+      🏨 الفندق: <b>حسب الاختيار</b>
+    </p>
+    <button class="btn-main"
+      onclick="selectOffer('شهر رمضان كامل','455.000 دج','حسب الاختيار')">
+      سجل الآن
+    </button>
   </div>
 
 </div>
 
 <form id="form">
-<h2 style="text-align:center;color:#2ecc71">📝 تسجيل سريع</h2>
+<h2 style="text-align:center;color:var(--gold)">📝 تسجيل سريع</h2>
 
 <input type="text" name="name" placeholder="الاسم الكامل" required>
 <input type="tel" name="phone" placeholder="رقم الهاتف" required>
@@ -199,7 +229,7 @@ footer{text-align:center;padding:15px;font-size:13px;opacity:.8}
 
 <button class="submit">تأكيد التسجيل</button>
 
-<div class="msg loading" id="loading">⏳ جاري الإرسال…</div>
+<div class="msg loading" id="loading">⏳ جاري إرسال التسجيل…</div>
 <div class="msg success" id="success">✅ تم التسجيل بنجاح</div>
 
 <div class="note">
@@ -212,10 +242,11 @@ footer{text-align:center;padding:15px;font-size:13px;opacity:.8}
 <footer>© Benhaddia Voyages</footer>
 
 <script>
-const SCRIPT_URL="ضع_رابط_Google_Script_هنا";
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbxQLEkCaMvp9u5IwaQ__QC89Jv_oG-MVN4G2k7UhmuoIusBpWLP29gY91PtbNsJXvGC/exec";
 
 const sidebar=document.getElementById("sidebar");
 const overlay=document.getElementById("overlay");
+const menuBtn=document.getElementById("menuBtn");
 const offer=document.getElementById("offer");
 const details=document.getElementById("details");
 const loading=document.getElementById("loading");
@@ -224,15 +255,17 @@ const success=document.getElementById("success");
 function openMenu(){
   sidebar.classList.add("active");
   overlay.classList.add("active");
+  menuBtn.style.display="none";
 }
 function closeMenu(){
   sidebar.classList.remove("active");
   overlay.classList.remove("active");
+  menuBtn.style.display="block";
 }
 
 function selectOffer(name,price,hotel){
   offer.value=name;
-  details.value="السعر: "+price+"\nالسكن: "+hotel;
+  details.value="السعر: "+price+"\nالفندق: "+hotel;
   document.getElementById("form").scrollIntoView({behavior:"smooth"});
 }
 
@@ -248,7 +281,7 @@ document.getElementById("form").addEventListener("submit",function(e){
     this.reset();
   })
   .catch(()=>{
-    loading.innerHTML="❌ خطأ في الإرسال";
+    loading.innerHTML="❌ حدث خطأ أثناء الإرسال";
   });
 });
 </script>
