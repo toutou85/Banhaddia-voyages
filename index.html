@@ -1,1 +1,257 @@
-ffd
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عروض عمرة رمضان | Benhaddia Voyages</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Tajawal,Arial,sans-serif;
+  background:url("https://i.supaimg.com/eefe12a3-7db0-41da-b066-6c73d0ff7a7c.jpg") no-repeat center fixed;
+  background-size:cover;
+  color:#fff;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:-1;
+}
+
+/* HEADER */
+header{text-align:center;padding:20px}
+header img{max-width:240px}
+header h1{color:#2ecc71;font-size:22px;margin:8px 0}
+header p{opacity:.9}
+
+/* MENU */
+.menu-btn{
+  position:fixed;
+  right:15px;
+  top:15px;
+  font-size:28px;
+  cursor:pointer;
+  z-index:1100;
+  color:#2ecc71
+}
+.sidebar{
+  position:fixed;
+  top:0;
+  right:-260px;
+  width:260px;
+  height:100%;
+  background:#0f2f1f;
+  padding:20px;
+  transition:.3s;
+  z-index:1000
+}
+.sidebar.active{right:0}
+.sidebar h3{color:#2ecc71}
+.sidebar a{
+  display:block;
+  padding:12px 0;
+  color:#fff;
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.1)
+}
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:999
+}
+.overlay.active{display:block}
+
+/* SECTION */
+.section{max-width:900px;margin:auto;padding:15px}
+
+/* OFFERS */
+.offers{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px
+}
+.card{
+  background:rgba(15,40,30,.95);
+  padding:18px;
+  border-radius:14px
+}
+.card h3{color:#2ecc71;font-size:16px}
+.card p{font-size:14px;line-height:1.8}
+.btn-main{
+  margin-top:10px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#27ae60;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer
+}
+
+/* FORM */
+form{
+  background:rgba(15,40,30,.95);
+  padding:20px;
+  border-radius:16px;
+  margin-top:25px
+}
+input,textarea{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border:none;
+  border-radius:10px
+}
+textarea{resize:none}
+button.submit{
+  width:100%;
+  padding:14px;
+  background:#2ecc71;
+  border:none;
+  border-radius:12px;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  color:#000
+}
+.msg{display:none;margin-top:10px;padding:12px;border-radius:10px;text-align:center}
+.loading{background:#f1c40f;color:#000}
+.success{background:#1e8449}
+.note{
+  margin-top:10px;
+  background:#1b3a2a;
+  padding:10px;
+  border-radius:10px;
+  font-size:14px
+}
+
+footer{text-align:center;padding:15px;font-size:13px;opacity:.8}
+</style>
+</head>
+
+<body>
+
+<div class="menu-btn" onclick="openMenu()">☰</div>
+
+<div class="sidebar" id="sidebar">
+  <h3>القائمة</h3>
+  <a href="#" onclick="closeMenu()">الرئيسية</a>
+  <a href="tarakhees.html">📜 التراخيص</a>
+  <a href="offer-details.html">🕋 تفاصيل العروض</a>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<header>
+  <img src="https://i.supaimg.com/c2351806-1056-46f1-8472-c0ce25efe142.png">
+  <h1>وكالة بن هدية للسياحة والأسفار</h1>
+  <p>Benhaddia Voyages – تنظيم عمرة باحترافية</p>
+</header>
+
+<section class="section">
+
+<h2 style="text-align:center;color:#2ecc71">📌 عروض العمرة</h2>
+
+<div class="offers">
+
+  <div class="card">
+    <h3>أسبوع شعبان / رمضان</h3>
+    <p>ابتداءً من 259.000 دج</p>
+    <button class="btn-main" onclick="selectOffer('أسبوع شعبان / رمضان','من 259.000 دج','فنادق قريبة من الحرم')">سجل الآن</button>
+  </div>
+
+  <div class="card">
+    <h3>15 الأوائل من رمضان</h3>
+    <p>ابتداءً من 299.000 دج</p>
+    <button class="btn-main" onclick="selectOffer('15 الأوائل من رمضان','من 299.000 دج','فنادق معتمدة')">سجل الآن</button>
+  </div>
+
+  <div class="card">
+    <h3>15 الأخيرة من رمضان</h3>
+    <p>ابتداءً من 430.000 دج</p>
+    <button class="btn-main" onclick="selectOffer('15 الأخيرة من رمضان','من 430.000 دج','فنادق قريبة')">سجل الآن</button>
+  </div>
+
+  <div class="card">
+    <h3>شهر رمضان كامل</h3>
+    <p>ابتداءً من 455.000 دج</p>
+    <button class="btn-main" onclick="selectOffer('شهر رمضان كامل','من 455.000 دج','حسب الاختيار')">سجل الآن</button>
+  </div>
+
+</div>
+
+<form id="form">
+<h2 style="text-align:center;color:#2ecc71">📝 تسجيل سريع</h2>
+
+<input type="text" name="name" placeholder="الاسم الكامل" required>
+<input type="tel" name="phone" placeholder="رقم الهاتف" required>
+<input type="text" name="wilaya" placeholder="الولاية" required>
+
+<input type="text" name="offer" id="offer" placeholder="العرض المختار" readonly>
+<textarea name="details" id="details" rows="4" readonly></textarea>
+
+<button class="submit">تأكيد التسجيل</button>
+
+<div class="msg loading" id="loading">⏳ جاري الإرسال…</div>
+<div class="msg success" id="success">✅ تم التسجيل بنجاح</div>
+
+<div class="note">
+⚠️ التسجيل أولي ولا يتم التأكيد إلا بعد دفع المبلغ وإرسال جواز السفر.
+</div>
+</form>
+
+</section>
+
+<footer>© Benhaddia Voyages</footer>
+
+<script>
+const SCRIPT_URL="ضع_رابط_Google_Script_هنا";
+
+const sidebar=document.getElementById("sidebar");
+const overlay=document.getElementById("overlay");
+const offer=document.getElementById("offer");
+const details=document.getElementById("details");
+const loading=document.getElementById("loading");
+const success=document.getElementById("success");
+
+function openMenu(){
+  sidebar.classList.add("active");
+  overlay.classList.add("active");
+}
+function closeMenu(){
+  sidebar.classList.remove("active");
+  overlay.classList.remove("active");
+}
+
+function selectOffer(name,price,hotel){
+  offer.value=name;
+  details.value="السعر: "+price+"\nالسكن: "+hotel;
+  document.getElementById("form").scrollIntoView({behavior:"smooth"});
+}
+
+document.getElementById("form").addEventListener("submit",function(e){
+  e.preventDefault();
+  loading.style.display="block";
+  success.style.display="none";
+
+  fetch(SCRIPT_URL,{method:"POST",body:new FormData(this)})
+  .then(()=>{
+    loading.style.display="none";
+    success.style.display="block";
+    this.reset();
+  })
+  .catch(()=>{
+    loading.innerHTML="❌ خطأ في الإرسال";
+  });
+});
+</script>
+
+</body>
+</html>
